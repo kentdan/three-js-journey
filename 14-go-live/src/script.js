@@ -24,18 +24,20 @@ const scene = new THREE.Scene()
 const textureLoader = new THREE.TextureLoader()
 const matcapTexture = textureLoader.load('textures/matcaps/4.png')
 
+
+
 /**
  * Fonts
  */
 const fontLoader = new FontLoader()
-
+// Material
+//const material = new THREE.MeshMatcapMaterial({ matcap: matcapTexture })
+const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
 fontLoader.load(
     '/fonts/helvetiker_regular.typeface.json',
     (font) =>
     {
-        // Material
-        const material = new THREE.MeshMatcapMaterial({ matcap: matcapTexture })
-
+        
         // Text
         const textGeometry = new TextGeometry(
             'Kent Daniel',
@@ -74,7 +76,8 @@ fontLoader.load(
         }
     }
 )
-
+// Debug
+gui.add(material, 'wireframe')
 /**
  * Sizes
  */
@@ -82,6 +85,7 @@ const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
 }
+
 
 window.addEventListener('resize', () =>
 {
